@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jade's Whimsical Void // Ultimate Hyper-Interactive Y2K Edition 🐾🕷️💾</title>
+    <style>
+        :root {
+            --bg-color: #1c1215; 
+            --primary-burgundy: #6b1d2f; 
+            --pastel-pink: #fbc4ab;
+            --pastel-blue: #bde0fe;
+            --pastel-purple: #e2cfea;
+            --pastel-rose: #ffccd5;
+            --pastel-green: #d8f3dc;
+            --y2k-cyber: #00f0ff; 
+            --text-color: #2b2024;
+            --card-shadow: 6px 6px 0px var(--primary-burgundy);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: #fff; 
+            overflow-x: hidden;
+            padding: 20px;
+            transition: all 0.4s ease;
+        }
+
+        /* --- Y2K Matrix Grid Background --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: linear-gradient(rgba(251, 196, 171, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(251, 196, 171, 0.05) 1px, transparent 1px);
+            background-size: 25px 25px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* --- Whimsical Environment Elements --- */
+        .pixel-cat, .spider, .y2k-cd, .glitch-fairy, .ghost-butterfly, .pixel-bat, .retro-pager {
+            position: fixed;
+            z-index: 100;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .pixel-cat { bottom: 15px; right: 20px; font-size: 2.5rem; animation: bounce 2s infinite ease-in-out; }
+        .spider {
+            top: -10px; left: 10%; font-size: 2rem; transform-origin: top center; animation: dangle 4s infinite ease-in-out;
+        }
+        .spider::before {
+            content: ''; position: absolute; top: -100px; left: 50%; width: 1px; height: 120px; background: var(--pastel-pink); opacity: 0.3;
+        }
+
+        .y2k-cd { bottom: 20px; left: 20px; font-size: 2.2rem; transition: transform 0.5s ease; }
+        .y2k-cd:hover { transform: rotate(360deg) scale(1.2); }
+
+        .glitch-fairy { top: 25%; right: 5%; font-size: 2rem; animation: floatWindow4 3s infinite ease-in-out; filter: drop-shadow(0 0 8px var(--pastel-purple)); }
+        .ghost-butterfly { top: 60%; left: 3%; font-size: 1.8rem; animation: floatWindow1 4s infinite ease-in-out; transition: all 0.3s ease; }
+        .pixel-bat { bottom: 80px; right: 30px; font-size: 2.2rem; animation: bounce 1.5s infinite ease-in-out; }
+        .retro-pager { top: 15%; left: 2px; font-size: 1.7rem; background: #333; padding: 4px; border: 2px solid var(--y2k-cyber); border-radius: 4px; }
+
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes dangle { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(40px) rotate(5deg); } }
+
+        /* --- Interactive Floating Animations --- */
+        @keyframes floatWindow1 { 0%, 100% { transform: translateY(0px) rotate(0.5deg); } 50% { transform: translateY(-12px) rotate(-0.5deg); } }
+        @keyframes floatWindow2 { 0%, 100% { transform: translateY(0px) rotate(-1deg); } 50% { transform: translateY(-18px) rotate(0.5deg); } }
+        @keyframes floatWindow3 { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(-1deg); } }
+        @keyframes floatWindow4 { 0%, 100% { transform: translateY(0px) rotate(1deg); } 50% { transform: translateY(-10px) rotate(0deg); } }
+
+        .floating-window-1 { animation: floatWindow1 5s infinite ease-in-out; }
+        .floating-window-2 { animation: floatWindow2 6s infinite ease-in-out; }
+        .floating-window-3 { animation: floatWindow3 5.5s infinite ease-in-out; }
+        .floating-window-4 { animation: floatWindow4 4.5s infinite ease-in-out; }
+
+        .card.floating-window-1:hover, .card.floating-window-2:hover, .card.floating-window-3:hover, .card.floating-window-4:hover {
+            animation-play-state: paused;
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 50;
+        }
+
+        /* --- Drag Shaking Effect --- */
+        .card:active {
+            transform: scale(0.98) translate(2px, 2px) !important;
+            box-shadow: 2px 2px 0px var(--primary-burgundy) !important;
+        }
+
+        /* --- Dynamic Generated Errors --- */
+        .popup-error-node {
+            position: fixed; background: #fff; color: #000; border: 4px solid red;
+            padding: 20px; box-shadow: 8px 8px 0px #000; z-index: 2000; max-width: 250px; text-align: center;
+        }
+
+        /* --- UI Elements --- */
+        header {
+            text-align: center; padding: 30px; background: var(--pastel-pink); border: 4px solid var(--primary-burgundy);
+            box-shadow: 8px 8px 0px var(--primary-burgundy); margin-bottom: 40px; position: relative;
+            animation: floatWindow1 6s infinite ease-in-out; color: var(--text-color);
+        }
+        header:hover { animation-play-state: paused; transform: scale(1.02); }
+
+        .window-bar {
+            position: absolute; top: -4px; left: -4px; right: -4px; height: 24px;
+            background: var(--primary-burgundy); display: flex; align-items: center; padding: 0 10px; justify-content: space-between;
+            cursor: move;
+        }
+        .window-dot { width: 12px; height: 12px; background: var(--pastel-rose); border: 1px solid #000; display: inline-block; }
+
+        h1 { color: var(--primary-burgundy); font-size: 2.5rem; margin-top: 15px; margin-bottom: 10px; text-shadow: 2px 2px 0px var(--pastel-purple); }
+
+        button {
+            background: var(--pastel-purple); border: 3px solid var(--primary-burgundy); padding: 12px 24px;
+            font-size: 1rem; cursor: pointer; box-shadow: 4px 4px 0px var(--primary-burgundy); transition: all 0.1s ease; margin: 10px; color: var(--text-color);
+        }
+        button:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--primary-burgundy); background: var(--y2k-cyber); }
+        button:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px var(--primary-burgundy); }
+
+        /* --- Printer System Styles --- */
+        .printer-input-box { margin-top: 10px; display: inline-flex; gap: 5px; }
+        .printer-input-box input { padding: 5px; font-family: inherit; border: 2px solid var(--primary-burgundy); }
+        .printed-tape {
+            background: #fffff0; color: #333; padding: 8px; font-size: 0.8rem; border-left: 3px dashed red; border-right: 3px dashed red;
+            margin: 10px auto; max-width: 80%; display: none; animation: slideDownTape 0.5s ease-out forwards;
+        }
+        @keyframes slideDownTape { from { max-height: 0; opacity: 0; } to { max-height: 100px; opacity: 1; } }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px auto; padding: 20px; }
+
+        .card {
+            background: white; color: var(--text-color); border: 4px solid var(--primary-burgundy); padding: 25px 20px 20px 20px;
+            box-shadow: var(--card-shadow); text-align: center; position: relative; transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .card:hover { box-shadow: 12px 12px 0px var(--primary-burgundy); }
+        .card h2 { color: var(--primary-burgundy); margin-bottom: 15px; font-size: 1.3rem; }
+
+        .click-sparkle { position: fixed; pointer-events: none; font-size: 1.2rem; z-index: 1000; animation: fadeOutUp 0.6s ease forwards; }
+        @keyframes fadeOutUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-25px) scale(0.6); } }
+
+        /* --- Widgets & Modules --- */
+        .widget-row { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .fortune-widget {
+            flex: 1; min-width: 280px; background: #fff; color: var(--text-color); border: 4px solid var(--primary-burgundy);
+            padding: 20px; box-shadow: 6px 6px 0px var(--pastel-blue); position: relative; text-align: center;
+        }
+        .fortune-disk-graphic { font-size: 3.5rem; margin: 10px 0; cursor: pointer; transition: transform 0.2s; }
+        .fortune-disk-graphic:hover { transform: scale(1.1) rotate(5deg); }
+
+        .poem-generator-section {
+            flex: 1; min-width: 280px; background: #fff; color: var(--text-color); border: 4px solid var(--primary-burgundy);
+            padding: 20px; box-shadow: 8px 8px 0px var(--pastel-pink); position: relative; text-align: center;
+        }
+        .poem-generator-section input, .poem-generator-section select { width: 90%; padding: 8px; margin: 8px 0; border: 3px solid var(--primary-burgundy); font-family: inherit; }
+        #poem-display { margin-top: 10px; padding: 10px; background: #f7f1eb; border: 2px solid var(--primary-burgundy); min-height: 40px; font-style: italic; white-space: pre-line; }
+
+        .stats-badge { background: var(--pastel-blue); border: 2px solid var(--primary-burgundy); padding: 5px 10px; display: inline-block; margin-top: 10px; font-size: 0.8rem; color: var(--text-color); }
+
+        /* --- Pop-up Modals System --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(28, 18, 21, 0.7);
+            backdrop-filter: blur(4px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal {
+            background: white; color: var(--text-color); border: 4px solid var(--primary-burgundy); padding: 40px 30px 30px 30px;
+            max-width: 500px; width: 90%; position: relative; transform: scale(0.85); transition: transform 0.2s ease; box-shadow: 12px 12px 0px var(--primary-burgundy);
+        }
+        .modal-overlay.active .modal { transform: scale(1); }
+        .close-btn { position: absolute; top: 2px; right: 4px; background: var(--pastel-pink); border: 2px solid var(--primary-burgundy); font-size: 0.9rem; cursor: pointer; color: var(--primary-burgundy); padding: 1px 5px; z-index: 10; }
+        .close-btn:hover { background: red; color: white; }
+
+        /* Pop-up Aesthetics */
+        .about-popup { background: var(--pastel-blue); }
+        .hobbies-popup { background: var(--pastel-green); }
+        .photobooth-popup { background: var(--pastel-purple); }
+        .neurovoid-popup { background: #0d0d0d; color: #39ff14; border-color: #ff007f; box-shadow: 10px 10px 0px #ff007f; }
+        .neurovoid-popup h2 { color: var(--y2k-cyber); text-shadow: 2px 2px #ff007f; }
+        .neurovoid-art { font-size: 3rem; margin: 15px 0; text-shadow: 0 0 10px var(--y2k-cyber); animation: pulse 1s infinite alternate; }
+        .asylum-popup { background: #2b2024; color: var(--pastel-pink); border-color: var(--primary-burgundy); box-shadow: 10px 10px 0px var(--primary-burgundy); }
+        .asylum-art { font-size: 3.5rem; margin: 15px 0; }
+        .verse-popup { background: #fdf6e2; color: #3d312a; border-color: #4a3b32; box-shadow: 10px 10px 0px #4a3b32; }
+        .verse-art { font-size: 3.5rem; margin: 15px 0; }
+        .women-popup { background: var(--pastel-rose); color: var(--primary-burgundy); border-color: var(--primary-burgundy); box-shadow: 10px 10px 0px var(--primary-burgundy); }
+        .women-art { font-size: 3.5rem; margin: 15px 0; }
+        .book-popup { background: #1c1a27; color: #e2cfea; border-color: var(--primary-burgundy); box-shadow: 10px 10px 0px var(--primary-burgundy); }
+        .book-art { font-size: 3.5rem; margin: 15px 0; }
+        .sketchpad-canvas { background: white; border: 2px solid var(--primary-burgundy); margin-top: 10px; cursor: crosshair; }
+
+        /* Music & Diary Canvas Layouts */
+        .music-popup { background: #111; color: var(--y2k-cyber); border-color: var(--y2k-cyber); box-shadow: 12px 12px 0px var(--primary-burgundy); }
+        .boombox { background: #222; border: 3px solid var(--y2k-cyber); padding: 15px; margin-top: 15px; text-align: center; }
+        .eq-container { display: flex; justify-content: center; align-items: flex-end; gap: 4px; height: 60px; margin: 15px 0; background: #000; padding: 5px; }
+        .eq-bar { width: 12px; height: 10%; background: var(--y2k-cyber); transition: height 0.15s ease; }
+        
+        .diary-popup { background: #fffdf5; border-color: var(--primary-burgundy); }
+        .diary-canvas-container { position: relative; margin-top: 15px; background: white; border: 2px dashed var(--primary-burgundy); width: 100%; height: 200px; overflow: hidden; }
+        .diary-textarea { width: 100%; height: 100%; border: none; padding: 15px; background: transparent; font-family: inherit; font-size: 1rem; outline: none; resize: none; position: absolute; top:0; left:0; z-index: 2; color: var(--text-color); }
+        .diary-stickers-layer { position: absolute; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none; }
+        .placed-sticker { position: absolute; font-size: 2rem; transform: translate(-50%, -50%); pointer-events: none; }
+        .diary-options { margin-top: 10px; text-align: left; }
+        .color-swatch { display: inline-block; width: 24px; height: 24px; border: 2px solid var(--primary-burgundy); margin-right: 5px; cursor: pointer; }
+        .sticker-btn { display: inline-block; font-size: 1.5rem; margin-right: 10px; cursor: pointer; padding: 3px; border: 1px solid transparent; }
+        .sticker-btn.selected { border-color: var(--primary-burgundy); background: var(--pastel-blue); }
+
+        /* Photobooth */
+        .photobooth-container { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 10px; }
+        .booth-screen { width: 240px; height: 240px; border: 4px solid var(--primary-burgundy); background: #fff; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        .booth-bg-layer { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; }
+        .booth-character-layer { font-size: 6rem; z-index: 2; transition: transform 0.2s ease; }
+        .booth-sticker-layer { position: absolute; font-size: 2rem; z-index: 3; }
+        .booth-filter-layer { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 4; pointer-events: none; }
+        .booth-controls select, .booth-controls button { padding: 5px; font-size: 0.8rem; margin: 3px; }
+
+        @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.08); } }
+        .project-link { display: inline-block; margin-top: 15px; color: var(--primary-burgundy); text-decoration: underline; }
+        .neurovoid-popup .project-link { color: var(--y2k-cyber); }
+        .asylum-popup .project-link { color: var(--pastel-pink); }
+        .women-popup .project-link { color: white; background: var(--primary-burgundy); padding: 5px 10px; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="pixel-cat" id="secretCat" onclick="triggerSecret('cat')">🐈‍⬛</div>
+    <div class="spider" id="secretSpider" onclick="triggerSecret('spider')">🕷️</div>
+    <div class="y2k-cd" id="secretCD" onclick="triggerThemeEngine()">💿</div>
+    <div class="glitch-fairy" id="glitchFairy" onclick="triggerSecret('fairy')">🧚‍♀️</div>
+    <div class="ghost-butterfly" id="ghostButterfly" onmouseover="dodgeButterfly()">🦋</div>
+    <div class="pixel-bat" id="pixelBat" onclick="triggerSecret('bat')">🦇</div>
+    <div class="retro-pager" id="retroPager" onclick="spawnSystemErrorAlert()">📟</div>
+
+    <header>
+        <div class="window-bar"><div class="window-dot"></div><span style="color:#fff; font-size:0.8rem;">JADE_VOID_OS_V4.0_ULTRA.EXE</span><div class="window-dot"></div></div>
+        <h1>Welcome to Jade's Void ✨</h1>
+        <p>A dreamy blend of pastels, adaptive structural physics, and responsive cosmic fragments.</p>
+        
+        <div class="printer-input-box">
+            <input type="text" id="printerMsg" placeholder="Type data banner strip..." max-length="30">
+            <button style="padding:4px 10px; margin:0; font-size:0.8rem;" onclick="printBannerTape()">📟 Print Strip</button>
+        </div>
+        <div class="printed-tape" id="printedTapeArea"></div>
+
+        <br>
+        <button onclick="openModal('about-modal')">👁️ About Jade</button>
+        <div class="stats-badge">🎛️ Click Power: <span id="click-counter">0</span></div>
+    </header>
+
+    <main class="grid">
+        <div class="card floating-window-1">
+            <div class="window-bar"><div class="window-dot"></div></div>
+            <h2>👾 Neurovoid</h2><p>Enter the cybernetic dreamscape simulation.</p>
+            <button onclick="openModal('neurovoid-modal')">Launch Interface</button>
+        </div>
+
+        <div class="card floating-window-2">
+            <div class="window-bar"><div class="window-dot"></div></div>
+            <h2>🏰 Lost Asylum</h2><p>Spooky corridors wrapped in pixel shadows.</p>
+            <button onclick="openModal('asylum-modal')">Unlock Gates</button>
+        </div>
+
+        <div class="card floating-window-3">
+            <div class="window-bar"><div class="window-dot"></div></div>
+            <h2>📖 Silent Verse Society</h2><p>Secret texts hidden away in quiet chambers.</p>
+            <button onclick="openModal('verse-modal')">Read Chronicles</button>
+        </div>
+
+        <div class="card floating-window-4" style="border-color: var(--primary-burgundy); background: var(--pastel-rose);">
+            <div class="window-bar"><div class="window-dot"></div></div>
+            <h2>🌸 To Every Woman I Have Ever Been</h2>
+            <p style="font-size: 0.9rem; color: var(--primary-burgundy);">[ONGOING REFLECTIONS]</p>
+            <p>An anthology of changing skins and internal growth.</p>
+            <button style="background: white;" onclick="openModal('women-modal')">Examine Mirrors</button>
+        </div>
+
+        <div class="card floating-window-1" style="border-color: var(--primary-burgundy); background: #2b2024; color: #fff;">
+            <div class="window-bar"><div class="window-dot"></div></div>
+            <h2 style="color: var(--pastel-purple)">🔍 Paranormal Investigation [WIP]</h2>
+            <p>An ongoing MM romance novel tracking two detectives chasing ghosts.</p>
+            <button style="background: var(--pastel-blue); color: var(--text-color);" onclick="openBookModal()">Read Case File</button>
+        </div>
+
+        <div class="card floating-window-2" style="border-color: var(--primary-burgundy); background: var(--pastel-green);">
+            <div class="window-bar"><div class="window-dot"></div></div>
+            <h2>🎨 Studio & Sanctuary</h2><p>Where lines meet imagination outside of web containers.</p>
+            <button style="background: white;" onclick="openModal('hobbies-modal')">Step Inside</button>
+        </div>
+
+        <div class="card floating-window-3" style="border-color: var(--primary-burgundy); background: var(--pastel-blue);">
+            <div class="window-bar"><div class="window-dot"></div></div>
+            <h2>📸 Neo-Y2K Photobooth</h2><p>Style a retro snapshot, add layers, and save your token!</p>
+            <button style="background: white;" onclick="openModal('photobooth-modal')">Open Camera</button>
+        </div>
+
+        <div class="card floating-window-4" style="border-color: #00f0ff; background: #111; color: #fff;">
+            <div class="window-bar" style="background:#00f0ff;"><div class="window-dot"></div></div>
+            <h2 style="color:var(--y2k-cyber)">📻 Void Beats Radio</h2><p>Tune into synth frequencies and watch the display dance.</p>
+            <button style="background: var(--y2k-cyber); color:#000;" onclick="openModal('music-modal')">Turn On Tune</button>
+        </div>
+
+        <div class="card floating-window-1" style="border-color: var(--primary-burgundy); background: #fffdf5;">
+            <div class="window-bar"><div class="window-dot"></div></div>
+            <h2>📓 Cyber Journal</h2><p>Leave a digital log entry stamped with vintage tokens.</p>
+            <button style="background: var(--pastel-pink);" onclick="openModal('diary-modal')">Open Pages</button>
+        </div>
+    </main>
+
+    <div class="widget-row">
+        <section class="fortune-widget">
+            <div class="window-bar"><div class="window-dot"></div><span style="color:var(--text-color); font-size:0.7rem;">FORTUNE_TELLER.EXE</span></div>
+            <h2 style="color:var(--primary-burgundy)">💾 Void Disk Terminal</h2>
+            <p style="font-size:0.8rem;">Click the floppy disk data drive node to read a random matrix projection strip.</p>
+            <div class="fortune-disk-graphic" onclick="readFloppyFortune()">💾</div>
+            <div id="fortuneDisplay" style="font-size:0.9rem; font-weight:bold; color:var(--primary-burgundy); background:#fcfcfc; padding:8px; border:1px solid #ddd; min-height:40px;">[Drive Empty]</div>
+        </section>
+
+        <section class="poem-generator-section">
+            <div class="window-bar"><div class="window-dot"></div><span style="color:var(--text-color); font-size:0.7rem;">POEM_WEAVER.EXE</span></div>
+            <h2>✨ The Verse Weaver ✨</h2>
+            <p style="font-size:0.8rem;">Input your presence to receive a tailored fragment of the void.</p>
+            <input type="text" id="viewer-name" placeholder="What should the void call you?">
+            <select id="poem-vibe">
+                <option value="cyber">Cyber Dream ⚡</option>
+                <option value="gothic">Gothic Pastel 🏚️</option>
+                <option value="romantic">Vintage Softness 🪶</option>
+            </select>
+            <button style="padding:6px 14px;" onclick="generatePoem()">Weave My Poem</button>
+            <div id="poem-display">Your verse will echo here...</div>
+        </section>
+    </div>
+
+    <div class="modal-overlay" id="about-modal" onclick="closeModal(event, 'about-modal')">
+        <div class="modal about-popup" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="document.getElementById('about-modal').classList.remove('active')">X</button>
+            <h2>Identity File: Loaded 📁</h2>
+            <p style="margin: 15px 0; line-height: 1.5;">Hi, I'm Jade! I am a web traveler experimenting with cute aesthetics, sharp burgundy contrasts, and glitchy pixel code.</p>
+            <div style="font-size: 2rem;">🐾🐈‍⬛🕸️</div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="neurovoid-modal" onclick="closeModal(event, 'neurovoid-modal')">
+        <div class="modal neurovoid-popup" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="document.getElementById('neurovoid-modal').classList.remove('active')">X</button>
+            <h2>SYSTEM_ERR: NEUROVOID</h2><div class="neurovoid-art">🧠⚡🌐</div>
+            <p>A digital neon labyrinth overriding your typical sensory signals.</p>
+            <a class="project-link" href="https://jadebabes.github.io/neurovoid/" target="_blank">> Access Terminal</a>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="asylum-modal" onclick="closeModal(event, 'asylum-modal')">
+        <div class="modal asylum-popup" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="document.getElementById('asylum-modal').classList.remove('active')">X</button>
+            <h2>LO$T ASYLUM</h2><div class="asylum-art">🏚️🕯️👁️</div>
+            <p>Pastel shadows, velvet and decay across haunted pixel spaces.</p>
+            <a class="project-link" href="https://jadebabes.github.io/lost-asylum/" target="_blank">> Step Inside...</a>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="verse-modal" onclick="closeModal(event, 'verse-modal')">
+        <div class="modal verse-popup" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="document.getElementById('verse-modal').classList.remove('active')">X</button>
+            <h2>The Silent Verse Society</h2><div class="verse-art">🪶📜🗝️</div>
+            <p style="font-family: 'Georgia', serif; font-style: italic;">"Where thoughts are bound in leather and lace..."</p>
+            <a class="project-link" href="https://jadebabes.github.io/silent-verse-society/" target="_blank">✒️ Turn the Page</a>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="women-modal" onclick="closeModal(event, 'women-modal')">
+        <div class="modal women-popup" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="document.getElementById('women-modal').classList.remove('active')">X</button>
+            <h2>To Every Woman I Have Ever Been</h2><div class="women-art">🥀🌊🦋🎭</div>
+            <a class="project-link" href="https://jadebabes.github.io/To-Every-Women-I-Have-Ever-Been-x/" target="_blank">View Metamorphosis</a>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="book-modal" onclick="closeModal(event, 'book-modal')">
+        <div class="modal book-popup" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="document.getElementById('book-modal').classList.remove('active')">X</button>
+            <h2>Case File: Spectral Hearts</h2><div class="book-art">🔦🕵️‍♂️🔮❤️</div>
+            <p id="book-personalized-msg" style="font-style: italic; color: var(--pastel-pink);"></p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="hobbies-modal" onclick="closeModal(event, 'hobbies-modal')">
+        <div class="modal hobbies-popup" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="document.getElementById('hobbies-modal').classList.remove('active')">X</button>
+            <h2>Jade's Creative Sanctuary 📂</h2>
+            <canvas id="hobbyCanvas" width="300" height="120" class="sketchpad-canvas"></canvas><br>
+            <button style="padding:4px 8px; font-size:0.7rem; background:#fff;" onclick="clearCanvas()">Clear Pad</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="photobooth-modal" onclick="closeModal(event, 'photobooth-modal')">
+        <div class="modal photobooth-popup" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="document.getElementById('photobooth-modal').classList.remove('active')">X</button>
+            <div class="photobooth-container">
+                <div class="booth-screen" id="boothScreen">
+                    <div class="booth-bg-layer" id="boothBg" style="background:#bde0fe;"></div>
+                    <div class="booth-character-layer" id="boothChar">👽</div>
+                    <div class="booth-filter-layer" id="boothFilter" style="background:rgba(0,240,255,0.15);"></div>
+                </div>
+                <div class="booth-controls">
+                    <select id="charSelect" onchange="updateBooth()"><option value="👽">Cyber Alien</option><option value="🐈‍⬛">Pixel Cat</option></select>
+                    <select id="bgSelect" onchange="updateBooth()"><option value="#bde0fe">Blue</option><option value="#ffccd5">Pink</option></select>
+                    <select id="filterSelect" onchange="updateBooth()"><option value="rgba(0,240,255,0.15)">Cyan</option><option value="rgba(0,0,0,0)">None</option></select>
+                    <button onclick="snapPhoto()">📸 Snap Pic</button>
+                </div>
+            </div>
+            <canvas id="snapCanvas" width="240" height="240" style="display:none;"></canvas>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="music-modal" onclick="closeModal(event, 'music-modal')">
+        <div class="modal music-popup" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="document.getElementById('music-modal').classList.remove('active')">X</button>
+            <div class="boombox">
+                <div id="trackName" style="font-size:0.8rem; background:#000; padding:4px;">TRACK: PASTEL_WARP.DAT</div>
+                <div class="eq-container" id="eqBox">
+                    <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+                </div>
+                <button onclick="toggleBoomboxPlay()" id="playBtn">▶️ START FREQUENCY</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="diary-modal" onclick="closeModal(event, 'diary-modal')">
+        <div class="modal diary-popup" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="document.getElementById('diary-modal').classList.remove('active')">X</button>
+            <div class="diary-canvas-container" id="diaryCanvasBox" onclick="placeStickerOnDiary(event)">
+                <textarea class="diary-textarea" placeholder="Dear System Matrix..."></textarea>
+                <div class="diary-stickers-layer" id="diaryStickersLayer"></div>
+            </div>
+            <button onclick="clearDiaryStickers()">Clear Stickers</button>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        let selectedStickerToken = '💖';
+        let eqInterval = null;
+        let isRadioPlaying = false;
+        let currentThemeIndex = 0;
+
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            if(id === 'hobbies-modal') { initCanvas(); }
+        }
+        function closeModal(event, id) {
+            if (event.target === document.getElementById(id)) {
+                document.getElementById(id).classList.remove('active');
+                if(id === 'music-modal') { stopBoombox(); }
+            }
+        }
+        function openBookModal() {
+            const name = document.getElementById('viewer-name').value.trim() || "Reader";
+            document.getElementById('book-personalized-msg').textContent = `🔮 "The EMF meter is spiking, ${name}... or maybe that's just my heart."`;
+            openModal('book-modal');
+        }
+
+        // --- NEW WIDGET 1: Printer Strip Banner ---
+        function printBannerTape() {
+            const text = document.getElementById('printerMsg').value.trim() || "SYSTEM HELLO WORLD";
+            const tape = document.getElementById('printedTapeArea');
+            tape.textContent = `⚡ [NODE-OUT]: ${text.toUpperCase()} // DAT_STAMP: ${new Date().toLocaleTimeString()}`;
+            tape.style.display = 'block';
+        }
+
+        // --- NEW WIDGET 2: Floppy Fortune Drive ---
+        function readFloppyFortune() {
+            const fortunes = [
+                "💾 [SECTOR CLEAN] Your code will compile cleanly on the first run today.",
+                "📟 [ALERT] A pastel glitch in the matrix will bring a creative burst.",
+                "🕸️ [SYSTEM DATA] Someone is browsing your digital portal with admiration.",
+                "⚡ [VOLTAGE HIGH] High probability of staying awake reading deep into the night."
+            ];
+            document.getElementById('fortuneDisplay').textContent = fortunes[Math.floor(Math.random() * fortunes.length)];
+        }
+
+        // --- NEW WIDGET 3: Dynamic Alert Spawner ---
+        function spawnSystemErrorAlert() {
+            const err = document.createElement('div');
+            err.className = 'popup-error-node';
+            err.style.left = Math.random() * 60 + 20 + '%';
+            err.style.top = Math.random() * 60 + 20 + '%';
+            err.innerHTML = `<p style="color:red;">⚠️ WARNING ⚠️</p><p style="font-size:0.8rem; margin:10px 0;">Matrix node cache overflows with whimsey.</p><button style="padding:2px 8px; font-size:0.7rem;" onclick="this.parentElement.remove()">OK</button>`;
+            document.body.appendChild(err);
+        }
+
+        // --- NEW WIDGET 4: Core Swap Theme Matrix Engine ---
+        function triggerThemeEngine() {
+            const themes = [
+                { bg: '#1c1215', burgundy: '#6b1d2f', pink: '#fbc4ab' },
+                { bg: '#0d0d0d', burgundy: '#ff007f', pink: '#00f0ff' },
+                { bg: '#2b2024', burgundy: '#bde0fe', pink: '#ffccd5' }
+            ];
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            const t = themes[currentThemeIndex];
+            document.documentElement.style.setProperty('--bg-color', t.bg);
+            document.documentElement.style.setProperty('--primary-burgundy', t.burgundy);
+            document.documentElement.style.setProperty('--pastel-pink', t.pink);
+            alert("💿 Theme Engine recalibrated to profile slot #" + (currentThemeIndex + 1));
+        }
+
+        function triggerSecret(type) {
+            if (type === 'cat') alert("🐾 Meow! Try typing 'y2k' inside the text prompt field downstream.");
+            else if (type === 'fairy') {
+                document.documentElement.style.setProperty('--card-shadow', '0px 0px 15px var(--y2k-cyber)');
+                alert(" Fairy altered current screen shadow depth vectors!");
+            }
+            else if (type === 'bat') {
+                document.body.style.filter = document.body.style.filter === 'invert(1)' ? 'invert(0)' : 'invert(1)';
+            }
+        }
+
+        function dodgeButterfly() {
+            const b = document.getElementById('ghostButterfly');
+            b.style.top = Math.random() * 80 + 10 + '%'; b.style.left = Math.random() * 80 + 10 + '%';
+        }
+
+        document.addEventListener('mousemove', function(e) {
+            if (Math.random() > 0.08) return;
+            spawnParticle(e.clientX, e.clientY);
+        });
+        document.addEventListener('click', function(e) {
+            if(e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'CANVAS' || e.target.classList.contains('diary-textarea')) return;
+            clickCount++;
+            document.getElementById('click-counter').textContent = clickCount;
+            spawnParticle(e.clientX, e.clientY);
+        });
+
+        function spawnParticle(x, y) {
+            const elements = ['⭐', '✨', '💿', '💾', '📟', '🐾', '🌸', '🦋'];
+            const spark = document.createElement('div');
+            spark.className = 'click-sparkle'; spark.style.left = (x - 10) + 'px'; spark.style.top = (y - 10) + 'px';
+            spark.textContent = elements[Math.floor(Math.random() * elements.length)];
+            document.body.appendChild(spark);
+            setTimeout(() => spark.remove(), 600);
+        }
+
+        function updateBooth() {
+            document.getElementById('boothChar').textContent = document.getElementById('charSelect').value;
+            document.getElementById('boothBg').style.background = document.getElementById('bgSelect').value;
+            document.getElementById('boothFilter').style.background = document.getElementById('filterSelect').value;
+        }
+        function snapPhoto() {
+            const canvas = document.getElementById('snapCanvas'); const ctx = canvas.getContext('2d');
+            ctx.fillStyle = document.getElementById('bgSelect').value; ctx.fillRect(0, 0, 240, 240);
+            ctx.fillStyle = "#000"; ctx.font = "80px Courier New"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+            ctx.fillText(document.getElementById('charSelect').value, 120, 120);
+            ctx.fillStyle = document.getElementById('filterSelect').value; ctx.fillRect(0, 0, 240, 240);
+            const imageURI = canvas.toDataURL("image/png");
+            const tempLink = document.createElement('a'); tempLink.download = 'purikura.png'; tempLink.href = imageURI;
+            document.body.appendChild(tempLink); tempLink.click(); document.body.removeChild(tempLink);
+        }
+
+        function toggleBoomboxPlay() {
+            isRadioPlaying = !isRadioPlaying;
+            const btn = document.getElementById('playBtn');
+            if(isRadioPlaying) {
+                btn.textContent = "🛑 STOP FREQUENCY";
+                eqInterval = setInterval(() => {
+                    document.querySelectorAll('.eq-bar').forEach(bar => { bar.style.height = (Math.random() * 90 + 10) + '%'; });
+                }, 150);
+            } else { stopBoombox(); }
+        }
+        function stopBoombox() {
+            isRadioPlaying = false; clearInterval(eqInterval);
+            document.getElementById('playBtn').textContent = "▶️ START FREQUENCY";
+            document.querySelectorAll('.eq-bar').forEach(bar => { bar.style.height = '10%'; });
+        }
+
+        function placeStickerOnDiary(event) {
+            const rect = document.getElementById('diaryCanvasBox').getBoundingClientRect();
+            const sticker = document.createElement('div');
+            sticker.className = 'placed-sticker'; sticker.style.left = (event.clientX - rect.left) + 'px'; sticker.style.top = (event.clientY - rect.top) + 'px';
+            sticker.textContent = selectedStickerToken; document.getElementById('diaryStickersLayer').appendChild(sticker);
+        }
+        function clearDiaryStickers() { document.getElementById('diaryStickersLayer').innerHTML = ''; }
+
+        function generatePoem() {
+            const name = document.getElementById('viewer-name').value.trim() || "Stranger";
+            const vibe = document.getElementById('poem-vibe').value;
+            const display = document.getElementById('poem-display');
+            let poem = "";
+            if (name.toLowerCase() === 'y2k') {
+                poem = `// CYBER_ERROR_LOAD_SUCCESS\nThe system clock hit year 2000 and broke.\nPastel wires fused into burgundy smoke.`;
+            } else if (vibe === "cyber") {
+                poem = `Neon pulses through your veins,\nSignals bypass earthly pains.\nYou are ${name}, a flawless cyber dream.`;
+            } else if (vibe === "gothic") {
+                poem = `The spiders spin a web for ${name},\nIn halls where ghosts forget their name.\nYou find your peace where night devours day.`;
+            } else if (vibe === "romantic") {
+                poem = `To the entity known as ${name},\nA gathering of roses, deep burgundy hue,\nBlooming beautifully right now.`;
+            }
+            display.textContent = poem;
+        }
+
+        let canvas, ctx, drawing = false;
+        function initCanvas() {
+            canvas = document.getElementById('hobbyCanvas'); ctx = canvas.getContext('2d');
+            ctx.strokeStyle = '#6b1d2f'; ctx.lineWidth = 3;
+            canvas.onmousedown = (e) => { drawing = true; ctx.beginPath(); ctx.moveTo(e.offsetX, e.offsetY); };
+            canvas.onmousemove = (e) => { if (drawing) { ctx.lineTo(e.offsetX, e.offsetY); ctx.stroke(); } };
+            window.onmouseup = () => { drawing = false; };
+        }
+        function clearCanvas() { if(ctx && canvas) ctx.clearRect(0, 0, canvas.width, canvas.height); }
+    </script>
+</body>
+</html>
